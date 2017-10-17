@@ -35,7 +35,14 @@ task yarnBuild(type: YarnTask, dependsOn: ['yarn_install']) {
     }
 }
 
-task buildTransport(dependsOn: yarnBuild) {
+task yarnPublish(type: YarnTask, dependsOn: yarnBuild) {
+    args = ['publish-all']
+    doLast{
+        println()
+    }
+}
+
+task buildTransport(dependsOn: yarnPublish) {
     outputs.dir('.')
 }
 
